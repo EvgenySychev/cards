@@ -8,8 +8,7 @@ type InitialStateType = {
 
 export const profileReducer = (state:InitialStateType= InitialState, action:ActionsType):InitialStateType => {
     switch (action.type) {
-        case "PROFILE":
-            return {...state}
+
         default:
             return state
     }

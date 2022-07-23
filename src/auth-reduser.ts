@@ -8,8 +8,7 @@ type InitialStateType = {
 
 export const authReducer = (state:InitialStateType = InitialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case "AUTH":
-            return {...state}
+
         default:
             return state
     }

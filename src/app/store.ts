@@ -3,11 +3,15 @@ import thunkMiddleware from 'redux-thunk'
 import {authReducer} from "../auth-reduser";
 import {appReducer} from "./app-reducer";
 import {profileReducer} from "../profile-reducer";
+import {loginReducer} from "../login-reducer";
+import {passwordReducer} from "../password-reducer";
 
 const rootReducer = combineReducers({
+    login: loginReducer,
     auth: authReducer,
     profile: profileReducer,
-    app: appReducer
+    app: appReducer,
+    password: passwordReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
