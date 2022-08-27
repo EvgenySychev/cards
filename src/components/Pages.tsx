@@ -4,10 +4,9 @@ import {NewPassword} from "./NewPassword";
 import Error404 from "./Error404";
 import {Test} from "./Test";
 import {SingUp} from "./SingUp";
-import {Login} from "./Login";
+import {Login} from "../pages/login/Login";
 import {PasswordRecovery} from "./PasswordRecovery";
-import {Profile} from "./Profile";
-
+import {Profile} from "../pages/profile/Profile";
 
 export const PATH = {
     TEST: '/cards',
@@ -20,10 +19,8 @@ export const PATH = {
 
 export const Pages = () => {
 
-
 return (
     <div>
-
         <Routes>
             <Route path={PATH.LOGIN} element={<Login/>}/>
             <Route path={PATH.SING_UP} element={<SingUp/>}/>

@@ -1,0 +1,16 @@
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 400px;
+    width: 300px;
+    margin:0 auto;
+    background-color: bisque;
+}
+ .img {
+
+     height: 150px;
+     width: 150px;
+
+ }

@@ -1,9 +1,20 @@
 import React from 'react'
+import {registerTC} from "../features/profile-reducer";
+import {useAppDispatch} from "../app/store";
 
 export const SingUp = () => {
+
+    const dispatch = useAppDispatch()
+
+    const registerHandler = () => {
+        console.log('register')
+        dispatch(registerTC)
+    }
+
+
     return (
         <div>
-            SING UP PAGE
+           <button onClick={()=>registerHandler()}>SING UP PAGE</button> SING UP PAGE
         </div>
     )
 }
