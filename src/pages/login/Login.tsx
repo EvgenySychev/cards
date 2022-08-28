@@ -1,8 +1,10 @@
 import React from 'react'
+import {Navigate} from "react-router-dom";
 import s from './Login.module.css'
 import {useFormik} from "formik";
-import {useAppDispatch} from "../../hooks/useTypeHooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/useTypeHooks";
 import {LoginTC} from "../../features/auth-reducer";
+import {PATH} from "./../../components/Pages";
 
 type FormikErrorType = {
     email?: string
@@ -12,6 +14,7 @@ type FormikErrorType = {
 
 export const Login = () => {
 
+    const isLoggedIn = useAppSelector(state=>state.login.isLoggedIn)
     const dispatch = useAppDispatch()
 
     const formik = useFormik({
@@ -42,6 +45,9 @@ export const Login = () => {
         },
     });
 
+if (isLoggedIn) {
+    return <Navigate replace to={PATH.PROFILE}/>
+}
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className={s.login}>

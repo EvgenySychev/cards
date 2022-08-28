@@ -3,6 +3,8 @@ import SuperButton from "../../common/SuperButton/SuperButton";
 import s from '../../pages/profile/Profile.module.css'
 import {useAppDispatch} from "../../hooks/useTypeHooks";
 import {useAppSelector} from "../../hooks/useTypeHooks";
+import {Navigate} from "react-router-dom";
+import {PATH} from "../../components/Pages";
 
 export const Profile = () => {
 
@@ -26,6 +28,10 @@ export const Profile = () => {
         alert(title)
         //  setValue(title)
         //dispatch(updateNameProfileTC({title}))
+    }
+
+    if (!isLoggedIn) {
+        return <Navigate replace to={PATH.LOGIN}/>
     }
 
     return (

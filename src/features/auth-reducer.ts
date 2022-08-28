@@ -55,9 +55,9 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionsTyp
         })
 }
 
-export type loginACType = ReturnType<typeof setIsLoggedInAC>
+export type setIsLoggedInType = ReturnType<typeof setIsLoggedInAC>
 export type setProfileACType = ReturnType<typeof setProfileAC>
 
 type ActionsType =
-    | loginACType
+    | setIsLoggedInType
     | setProfileACType
