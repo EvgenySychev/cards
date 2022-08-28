@@ -1,6 +1,8 @@
 import React from 'react'
 import s from './Login.module.css'
 import {useFormik} from "formik";
+import {useAppDispatch} from "../../hooks/useTypeHooks";
+import {LoginTC} from "../../features/auth-reducer";
 
 type FormikErrorType = {
     email?: string
@@ -10,10 +12,12 @@ type FormikErrorType = {
 
 export const Login = () => {
 
+    const dispatch = useAppDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: '',
-            password:'',
+            password: '',
             rememberMe: false,
         },
         validate: (values) => {
@@ -23,35 +27,40 @@ export const Login = () => {
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                 errors.email = 'Invalid email address'
             }
+            if (!values.email) {
+                errors.password = 'Required'
+            } else if (values.password.length < 3) {
+                errors.password = 'Must be 3 characters or more'
+            }
+
             return errors
         },
         onSubmit: values => {
+            dispatch(LoginTC(values))
             alert(JSON.stringify(values, null, 2));
+            formik.resetForm();
         },
     });
 
     return (
-        <form onSubmit={formik.handleSubmit} >
+        <form onSubmit={formik.handleSubmit}>
             <div className={s.login}>
                 <h1>Sing in</h1>
                 <input
-                    type="text"
-                    name="email"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
+                    type="email"
+                    {...formik.getFieldProps('email')}
                 />
-                {formik.errors.email && <div style={{color:'red'}}>{formik.errors.email}</div>}
-                <input type="text"
-                       name="password"
-                       onChange={formik.handleChange}
-                       value={formik.values.password}
+                {formik.touched.email && formik.errors.email && <div style={{color: 'red'}}>{formik.errors.email}</div>}
+                <input type="password"
+                       {...formik.getFieldProps('password')}
                 />
+                {formik.touched.password && formik.errors.password &&
+                    <div style={{color: 'red'}}>{formik.errors.password}</div>}
                 <span className={s.rememberMe}>
                     <input
                         type="checkbox"
-                        name="rememberMe"
-                        onChange={formik.handleChange}
                         checked={formik.values.rememberMe}
+                        {...formik.getFieldProps('rememberMe')}
                     />
                     remember me
                 </span>

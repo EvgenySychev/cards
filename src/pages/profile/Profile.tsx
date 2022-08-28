@@ -1,31 +1,29 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import SuperButton from "../../common/SuperButton/SuperButton";
 import s from '../../pages/profile/Profile.module.css'
-import {useSelector} from "react-redux";
-import {useAppDispatch} from "../../app/store";
+import {useAppDispatch} from "../../hooks/useTypeHooks";
+import {useAppSelector} from "../../hooks/useTypeHooks";
+//import {profileTC} from "../../features/profile-reducer";
 
 
 export const Profile = () => {
 
     const dispatch = useAppDispatch()
 
-    const userName = useSelector<any, any>(state => state.profile.name)
-    const userEmail = useSelector<any, any>(state => state.profile.email)
-    const userPublicCardPacksCount = useSelector<any, any>(state => state.profile.publicCardPacksCount)
-    const isLoggedIn = useSelector<any, any>(state => state.auth.isLoggedIn)
+    const userName = useAppSelector(state => state.auth.name)
+    const userEmail = useAppSelector(state => state.auth.email)
+    const userImg = useAppSelector(state => state.auth.avatar)
+    const userPublicCardPacksCount = useAppSelector(state => state.auth.publicCardPacksCount)
+    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
-    let [value, setValue] = useState(userName);//забрать с BLL value
-    let [imgURL, setImgURL] = useState('https://www.pngitem.com/pimgs/m/22-220721_circled-user-male-type-user-colorful-icon-png.png');//забрать с BLL
-
-    //const updateProfile = dispatch(updateNameProfileTC({value, imgURL}))
-
-    useEffect(() => {
-        if (!isLoggedIn) {
-            return
-        }
-        //dispatch(profileTC)
-
-    })
+    //
+    // useEffect(() => {
+    //     if (!isLoggedIn) {
+    //         return
+    //     }
+    //     dispatch(profileTC)
+    //
+    // }, [])
 
     const logOutHandler = () => {
 
@@ -36,7 +34,8 @@ export const Profile = () => {
     }
 
     const UpdateUserName = (title: string) => {
-        setValue(title)
+        alert(title)
+        //  setValue(title)
         //dispatch(updateNameProfileTC({title}))
     }
 
@@ -44,9 +43,9 @@ export const Profile = () => {
         <div className={s.profile}>
             <div>Personal Information</div>
             <div>
-                <img className={s.img} src={imgURL}/>
+                <img className={s.img} src={userImg}/>
             </div>
-            <div>Name: <EditableSpan value={value} onChange={(t) => {
+            <div>Name: <EditableSpan value={userName} onChange={(t) => {
                 UpdateUserName(t)
             }}/>✎
             </div>

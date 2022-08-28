@@ -1,6 +1,6 @@
 import React from 'react'
-import {registerTC} from "../features/profile-reducer";
-import {useAppDispatch} from "../app/store";
+//import {registerTC} from "../features/profile-reducer";
+import {useAppDispatch} from "../hooks/useTypeHooks";
 
 export const SingUp = () => {
 
@@ -8,7 +8,7 @@ export const SingUp = () => {
 
     const registerHandler = () => {
         console.log('register')
-        dispatch(registerTC)
+       // dispatch(registerTC)
     }
 
 

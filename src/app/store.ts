@@ -2,15 +2,12 @@ import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
 import thunk, {ThunkAction,ThunkDispatch} from 'redux-thunk'
 import {authReducer} from "../features/auth-reducer";
 import {appReducer} from "./app-reducer";
-import {profileReducer} from "../features/profile-reducer";
-import {loginReducer} from "../features/login-reducer";
+//import {profileReducer} from "../features/profile-reducer";
 import {passwordReducer} from "../features/password-reducer";
-import {useDispatch} from "react-redux";
 
 const rootReducer = combineReducers({
-    login: loginReducer,
     auth: authReducer,
-    profile: profileReducer,
+ //   profile: profileReducer,
     app: appReducer,
     password: passwordReducer
 })
@@ -26,8 +23,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     AnyAction
     >
-
-export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 // @ts-ignore
 window.store = store;
