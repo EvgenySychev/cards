@@ -2,7 +2,6 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import React from "react";
 import {NewPassword} from "./NewPassword";
 import Error404 from "./Error404";
-import {Test} from "./Test";
 import {SingUp} from "./SingUp";
 import {Login} from "../pages/login/Login";
 import {PasswordRecovery} from "./PasswordRecovery";

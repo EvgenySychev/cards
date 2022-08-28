@@ -3,7 +3,8 @@ import './App.css';
 import {Pages} from "../components/Pages";
 import {Header} from "../components/Header";
 import {useAppDispatch, useAppSelector} from "../hooks/useTypeHooks";
-import {initializeAppTC} from "../app/app-reducer";
+import {initializeAppTC} from "../features/auth-reducer";
+
 
 function App() {
 
@@ -15,9 +16,8 @@ function App() {
     }, []);
 
     if(!isInitialized) {
-        window.alert("!!!")
+        window.alert("крутилка")
     }
-
     return (
         <div>
             <Header/>

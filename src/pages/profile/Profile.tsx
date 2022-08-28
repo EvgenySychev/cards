@@ -5,6 +5,7 @@ import {useAppDispatch} from "../../hooks/useTypeHooks";
 import {useAppSelector} from "../../hooks/useTypeHooks";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../components/Pages";
+import {logOutProfileTC} from "../../features/auth-reducer";
 
 export const Profile = () => {
 
@@ -17,11 +18,7 @@ export const Profile = () => {
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
 
     const logOutHandler = () => {
-
-        //dispatch(authTC)
-        //dispatch(logOutProfileTC)
-        alert("logOut success")
-
+        dispatch(logOutProfileTC())
     }
 
     const UpdateUserName = (title: string) => {

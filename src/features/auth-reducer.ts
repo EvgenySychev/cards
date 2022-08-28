@@ -13,14 +13,19 @@ const InitialState: InitialStateType = {
     rememberMe: false,
 
     error: '',
-    isLoggedIn: false
+    isLoggedIn: false,
+    isInitialized: false
 }
 
 type LoginType = {
     isLoggedIn: boolean
 }
 
-type InitialStateType = LoginType & ResponseType
+type isInitializedType = {
+    isInitialized: boolean
+}
+
+type InitialStateType = LoginType & ResponseType & isInitializedType
 
 export const authReducer = (state: InitialStateType = InitialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
@@ -29,11 +34,13 @@ export const authReducer = (state: InitialStateType = InitialState, action: Acti
         case "profile/SET-PROFILE-DATA":
             return {
                 ...state,
-                email:action.data.data.email,
-                name:action.data.data.name,
-                publicCardPacksCount:action.data.data.publicCardPacksCount,
+                email: action.data.data.email,
+                name: action.data.data.name,
+                publicCardPacksCount: action.data.data.publicCardPacksCount,
                 avatar: action.data.data.avatar
             }
+        case "APP/SET-IS-INITIALIZED":
+            return {...state,isInitialized:action.isInitialized}
 
         default:
             return state
@@ -41,10 +48,17 @@ export const authReducer = (state: InitialStateType = InitialState, action: Acti
 }
 
 export const setIsLoggedInAC = (value: boolean) => ({type: 'login/SET-IS-LOGGED-IN', value} as const)
-export const setProfileAC = (data: AxiosResponse<ResponseType, any>) => ({type: 'profile/SET-PROFILE-DATA', data} as const)
+export const setProfileAC = (data: AxiosResponse<ResponseType, any>) => ({
+    type: 'profile/SET-PROFILE-DATA',
+    data
+} as const)
+
+export const setAppInitializedAC = (isInitialized: boolean) => ({
+    type: 'APP/SET-IS-INITIALIZED',
+    isInitialized
+} as const)
 
 export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionsType>) => {
-    //dispatch()
     authAPI.login(data)
         .then(res => {
             dispatch(setIsLoggedInAC(true))
@@ -55,9 +69,35 @@ export const LoginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionsTyp
         })
 }
 
+export const initializeAppTC = () => (dispatch: Dispatch) => {
+    authAPI.me()
+        .then((res) => {
+            dispatch(setIsLoggedInAC(true))
+            dispatch(setProfileAC(res))
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+        .finally(() => {
+            dispatch(setAppInitializedAC(true))
+        })
+}
+
+export const logOutProfileTC = () => (dispatch: Dispatch<ActionsType>) => {
+    authAPI.logOutProfile()
+        .then(res => {
+            dispatch(setIsLoggedInAC(false))
+        })
+        .catch((e) => {
+
+        })
+}
+
 export type setIsLoggedInType = ReturnType<typeof setIsLoggedInAC>
 export type setProfileACType = ReturnType<typeof setProfileAC>
+export type setAppInitializedActionType = ReturnType<typeof setAppInitializedAC>
 
 type ActionsType =
     | setIsLoggedInType
     | setProfileACType
+    | setAppInitializedActionType
