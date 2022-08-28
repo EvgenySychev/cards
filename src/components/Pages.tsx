@@ -10,11 +10,11 @@ import {Profile} from "../pages/profile/Profile";
 
 export const PATH = {
     //TEST: '/cards',
-    LOGIN: '/cards/login',
-    SING_UP: '/cards/singUp',
-    PROFILE: '/cards/profile',
-    PASSWORD_RECOVERY: '/cards/passwordRecovery',
-    NEW_PASSWORD: '/cards/newPassword',
+    LOGIN: '/login',
+    SING_UP: '/singUp',
+    PROFILE: '/profile',
+    PASSWORD_RECOVERY: '/passwordRecovery',
+    NEW_PASSWORD: '/newPassword',
 }
 
 export const Pages = () => {
@@ -22,7 +22,7 @@ export const Pages = () => {
     return (
         <div>
             <Routes>
-                <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
+                <Route path={'/'} element={<Navigate replace to={PATH.LOGIN}/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.SING_UP} element={<SingUp/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>

@@ -11,7 +11,7 @@ export const Header= () => {
             <NavLink to={PATH.PROFILE} >profile</NavLink>
             <NavLink to={PATH.PASSWORD_RECOVERY} >password recovery</NavLink>
             <NavLink to={PATH.NEW_PASSWORD} >new password</NavLink>
-            <NavLink to={PATH.TEST} >test</NavLink>
+            {/*<NavLink to={PATH.TEST} >test</NavLink>*/}
             <div/>
         </div>
     )
