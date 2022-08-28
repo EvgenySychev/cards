@@ -5,7 +5,7 @@ import {appReducer} from "./app-reducer";
 import {passwordReducer} from "../features/password-reducer";
 
 const rootReducer = combineReducers({
-    auth: authReducer,
+    login: authReducer,
     app: appReducer,
     password: passwordReducer
 })

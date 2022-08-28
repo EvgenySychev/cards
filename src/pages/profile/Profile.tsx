@@ -8,11 +8,11 @@ export const Profile = () => {
 
     const dispatch = useAppDispatch()
 
-    const userName = useAppSelector(state => state.auth.name)
-    const userEmail = useAppSelector(state => state.auth.email)
-    const userImg = useAppSelector(state => state.auth.avatar)
-    const userPublicCardPacksCount = useAppSelector(state => state.auth.publicCardPacksCount)
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const userName = useAppSelector(state => state.login.name)
+    const userEmail = useAppSelector(state => state.login.email)
+    const userImg = useAppSelector(state => state.login.avatar)
+    const userPublicCardPacksCount = useAppSelector(state => state.login.publicCardPacksCount)
+    const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
 
     const logOutHandler = () => {
 
