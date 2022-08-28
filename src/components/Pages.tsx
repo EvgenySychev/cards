@@ -9,7 +9,7 @@ import {PasswordRecovery} from "./PasswordRecovery";
 import {Profile} from "../pages/profile/Profile";
 
 export const PATH = {
-    TEST: '/cards',
+    //TEST: '/cards',
     LOGIN: '/cards/login',
     SING_UP: '/cards/singUp',
     PROFILE: '/cards/profile',
@@ -19,18 +19,18 @@ export const PATH = {
 
 export const Pages = () => {
 
-return (
-    <div>
-        <Routes>
-            <Route path={PATH.LOGIN} element={<Login/>}/>
-            <Route path={PATH.SING_UP} element={<SingUp/>}/>
-            <Route path={PATH.PROFILE} element={<Profile/>}/>
-            <Route path={PATH.PASSWORD_RECOVERY} element={<PasswordRecovery/>}/>
-            <Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>
-            <Route path={'/'} element={<Navigate to={PATH.TEST}/>}/>
-            <Route path={'*'} element={<Error404/>} />
-            <Route path={PATH.TEST} element={<Test/>} />
-        </Routes>
-    </div>
-);
+    return (
+        <div>
+            <Routes>
+                <Route path={'/'} element={<Navigate to={PATH.LOGIN}/>}/>
+                <Route path={PATH.LOGIN} element={<Login/>}/>
+                <Route path={PATH.SING_UP} element={<SingUp/>}/>
+                <Route path={PATH.PROFILE} element={<Profile/>}/>
+                <Route path={PATH.PASSWORD_RECOVERY} element={<PasswordRecovery/>}/>
+                <Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>
+                {/*<Route path={PATH.TEST} element={<Test/>}/>*/}
+                <Route path={'*'} element={<Error404/>}/>
+            </Routes>
+        </div>
+    );
 }
