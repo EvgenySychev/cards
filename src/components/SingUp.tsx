@@ -1,5 +1,4 @@
 import React from 'react'
-//import {registerTC} from "../features/profile-reducer";
 import {useAppDispatch} from "../hooks/useTypeHooks";
 
 export const SingUp = () => {

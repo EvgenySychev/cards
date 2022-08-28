@@ -2,12 +2,10 @@ import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
 import thunk, {ThunkAction,ThunkDispatch} from 'redux-thunk'
 import {authReducer} from "../features/auth-reducer";
 import {appReducer} from "./app-reducer";
-//import {profileReducer} from "../features/profile-reducer";
 import {passwordReducer} from "../features/password-reducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
- //   profile: profileReducer,
     app: appReducer,
     password: passwordReducer
 })

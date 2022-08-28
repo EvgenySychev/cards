@@ -1,10 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from 'react'
+import React, {ChangeEvent, useState} from 'react'
 import SuperButton from "../../common/SuperButton/SuperButton";
 import s from '../../pages/profile/Profile.module.css'
 import {useAppDispatch} from "../../hooks/useTypeHooks";
 import {useAppSelector} from "../../hooks/useTypeHooks";
-//import {profileTC} from "../../features/profile-reducer";
-
 
 export const Profile = () => {
 
@@ -15,15 +13,6 @@ export const Profile = () => {
     const userImg = useAppSelector(state => state.auth.avatar)
     const userPublicCardPacksCount = useAppSelector(state => state.auth.publicCardPacksCount)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-
-    //
-    // useEffect(() => {
-    //     if (!isLoggedIn) {
-    //         return
-    //     }
-    //     dispatch(profileTC)
-    //
-    // }, [])
 
     const logOutHandler = () => {
 
